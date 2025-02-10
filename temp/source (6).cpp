@@ -36,6 +36,14 @@ public:
 		
 	}
 
+	
+	Book(string name, string genre, int pages) : name(name), genre(genre), pages(pages){
+    	if(pages < 0){
+        	throw (invalid_argument("Negative count of pages:(\n"));
+    	}
+  	}
+
+
 	string getName()
 	{
 		return name;
@@ -234,7 +242,7 @@ TEST(TEST, TEST_TEST) {
     string genre = "Romance";
     int pages = 352;
 
-    Book book();
+    Book book(name, genre, pages);
     string name_of_book = book.getName();
 
     EXPECT_EQ(name_of_book.c_str(), name);
@@ -243,7 +251,7 @@ TEST(TEST, TEST_TEST) {
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
 	::testing::InitGoogleTest(&argc, argv);
     ::testing::InitGoogleMock(&argc, argv);
